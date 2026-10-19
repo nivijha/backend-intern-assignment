@@ -1,5 +1,49 @@
-node_modules
+# Node.js dependencies
+node_modules/
+
+# Environment variables (local secrets — never commit)
 .env
-coverage
+.env.local
+.env.*.local
+
+# Coverage reports
+coverage/
+
+# Logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Operating system files
 .DS_Store
+Thumbs.db
+
+# Expo / React Native
+.expo/
+dist/
+build/
+.metro-health-check*
+
+# Mobile credentials and certificates
+*.pem
+*.key
+*.p8
+*.p12
+*.jks
+*.mobileprovision
+
+# IDE and editor artifacts
+.vscode/
+.idea/
+*.swp
+*~
+
+# TypeScript
+*.tsbuildinfo
+
+# Reference material (not part of the deliverable source)
+Sample Database Guide.pdf
+read_pdf.js
+extract_pdf_text.js
+pdf_text.txt

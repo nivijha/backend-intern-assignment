@@ -27,7 +27,7 @@ describe('decryptPacket', () => {
     const result = decryptPacket(validInput);
     expect(result.gatewayId).toBe('gw-001');
     expect(typeof result.plaintext).toBe('string');
-    expect(result.payload).toEqual(VALID_PACKET);
+    expect(result.payload).toEqual({ data: VALID_PACKET });
   });
 
   it('throws on missing gatewayId', () => {

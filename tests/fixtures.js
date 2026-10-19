@@ -16,6 +16,16 @@ function encryptPacket(payload, key = TEST_KEY) {
   };
 }
 
+function recalculateChecksum(packet) {
+  const buf = Buffer.from(packet);
+  let checksum = 0;
+  for (let i = 0; i < 252; i++) {
+    checksum = (checksum + buf[i]) % 65536;
+  }
+  buf.writeUInt16LE(checksum, 252);
+  return Array.from(buf);
+}
+
 function buildValidPacket() {
   const buf = Buffer.alloc(256);
 
@@ -43,23 +53,19 @@ function buildValidPacket() {
   buf[254] = 0x5A;
   buf[255] = 0xA5;
 
-  let checksum = 0;
-  for (let i = 0; i < 252; i++) {
-    checksum = (checksum + buf[i]) % 65536;
-  }
-  buf.writeUInt16LE(checksum, 252);
-
-  return Array.from(buf);
+  return recalculateChecksum(buf);
 }
 
 const VALID_PACKET = buildValidPacket();
 
-const ENCRYPTED_SAMPLE = encryptPacket(VALID_PACKET);
+// Encrypt in the real dataset format: { data: [...] }
+const ENCRYPTED_SAMPLE = encryptPacket({ data: VALID_PACKET });
 
 module.exports = {
   TEST_KEY_HEX,
   TEST_KEY,
   encryptPacket,
+  recalculateChecksum,
   VALID_PACKET,
   ENCRYPTED_SAMPLE
 };

@@ -6,7 +6,12 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "mobile:install": "cd mobile && npm install",
+    "mobile:start": "cd mobile && npx expo start",
+    "mobile:android": "cd mobile && npx expo start --android",
+    "mobile:ios": "cd mobile && npx expo start --ios",
+    "mobile:web": "cd mobile && npx expo start --web"
   },
   "repository": {
     "type": "git",
@@ -21,14 +26,18 @@
   },
   "homepage": "https://github.com/nivijha/backend-intern-assignment#readme",
   "dependencies": {
+    "axios": "^1.20.0",
     "cors": "^2.8.6",
     "dotenv": "^18.0.7",
     "express": "^5.3.0",
-    "mongoose": "^9.11.1"
+    "mongoose": "^9.11.1",
+    "pdf-parse": "^2.4.5",
+    "pdf2json": "^4.1.0"
   },
   "devDependencies": {
     "jest": "^30.5.2",
     "nodemon": "^3.1.14",
+    "sqlite3": "^6.0.1",
     "supertest": "^7.3.1"
   }
 }

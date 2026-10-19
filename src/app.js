@@ -1,5 +1,9 @@
 const express = require('express');
 const cors = require('cors');
+const ingestRoutes = require('./routes/ingestRoutes');
+const deviceRoutes = require('./routes/deviceRoutes');
+const readingRoutes = require('./routes/readingRoutes');
+const alertRoutes = require('./routes/alertRoutes');
 
 const app = express();
 
@@ -13,5 +17,10 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
+
+app.use(ingestRoutes);
+app.use(deviceRoutes);
+app.use(readingRoutes);
+app.use(alertRoutes);
 
 module.exports = app;
